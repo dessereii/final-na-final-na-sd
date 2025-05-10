@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Take Exam</title>
+</head>
+<body style="background-color:#fefbf6;">
+    <h2>{{ exam[1] }}</h2>
+    <form method="POST">
+        {% for i, question in enumerate(questions) %}
+            <div style="margin-bottom:20px;">
+                <p><strong>Q{{ i + 1 }}:</strong> {{ question['question'] }}</p>
+                {% if question['type'] == 'mcq' %}
+                    {% for opt in question['options'] %}
+                        <label><input type="radio" name="q{{ i }}" value="{{ opt }}"> {{ opt }}</label><br>
+                    {% endfor %}
+                {% elif question['type'] == 'short' %}
+                    <textarea name="q{{ i }}" rows="3" cols="40" placeholder="Your answer here..."></textarea>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit">Submit Exam</button>
+    </form>
+    <a href="{{ url_for('student_exams') }}">Back to Exams</a>
+</body>
+</html>

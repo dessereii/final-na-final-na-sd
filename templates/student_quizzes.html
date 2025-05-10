@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assigned Quizzes</title>
+</head>
+<body style="background:#f5e5cc;">
+    <h2>Your Assigned Quizzes</h2>
+    {% for quiz in quizzes %}
+        <div style="background:white; padding:10px; margin-bottom:10px;">
+            <strong>{{ quiz[1] }}</strong><br>
+            <em>Deadline:</em> {{ quiz[3] }}<br>
+            <a href="{{ url_for('take_quiz', quiz_id=quiz[0]) }}">Take Quiz</a>
+        </div>
+    {% else %}
+        <p>No quizzes assigned to you.</p>
+    {% endfor %}
+    <a href="{{ url_for('student_home') }}">Back</a>
+</body>
+</html>

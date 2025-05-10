@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Exams</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            background-color: #f3f3f3;
+        }
+        .btn {
+            padding: 6px 12px;
+            color: white;
+            background: #007BFF;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .btn-danger {
+            background: #dc3545;
+        }
+        .top-nav {
+            margin-bottom: 20px;
+        }
+        .top-nav a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-nav">
+    <a href="{{ url_for('admin_home') }}">Dashboard</a>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</div>
+
+<h1>Manage Exams</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Exam Title</th>
+            <th>Description</th>
+            <th>Duration (mins)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for exam in exams %}
+        <tr>
+            <td>{{ exam[1] }}</td>  
+            <td>{{ exam[2] }}</td>   
+            <td>{{ exam[3] }}</td>  
+
+            <td>
+                <!-- Replace these with actual routes when implemented -->
+                <a class="btn" href="#">Edit</a>
+                <a class="btn btn-danger" href="#">Delete</a>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="4">No exams found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

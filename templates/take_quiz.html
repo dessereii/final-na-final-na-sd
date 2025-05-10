@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+</head>
+<body style="background:#fef6e4;">
+    <h2>{{ title }}</h2>
+    <form method="POST">
+        {% for i, q in enumerate(questions) %}
+            <div style="margin-bottom:15px;">
+                <strong>Q{{ i+1 }}:</strong> {{ q['question'] }}<br>
+                {% if q['type'] == 'mcq' %}
+                    {% for opt in q['options'] %}
+                        <input type="radio" name="q{{ i }}" value="{{ opt }}" required> {{ opt }}<br>
+                    {% endfor %}
+                {% elif q['type'] == 'short' %}
+                    <textarea name="q{{ i }}" rows="2" cols="50" required></textarea>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit">Submit Quiz</button>
+    </form>
+    <a href="{{ url_for('student_quizzes') }}">Back to Quizzes</a>
+</body>
+</html>

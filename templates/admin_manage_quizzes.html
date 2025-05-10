@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Quizzes</title>
+    <style>
+        body {
+            background-color: #3b2f2f;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 40px;
+        }
+        .container {
+            background-color: #5e443b;
+            padding: 30px;
+            margin: auto;
+            width: 70%;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px black;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        table {
+            margin: 20px auto;
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #6b4c3b;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #8a6f5b;
+        }
+        th {
+            background-color: #8b5e3c;
+        }
+        form {
+            margin-top: 30px;
+        }
+        input[type="text"], input[type="number"] {
+            padding: 8px;
+            margin: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #a44d3a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        input[type="submit"]:hover {
+            background-color: #c25e4c;
+        }
+        a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Manage Quizzes</h2>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Duration (minutes)</th>
+            </tr>
+            {% for quiz in quizzes %}
+            <tr>
+                <td>{{ quiz[0] }}</td>
+                <td>{{ quiz[1] }}</td>
+                <td>{{ quiz[2] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <form method="POST">
+            <input type="text" name="title" placeholder="Quiz Title" required>
+            <input type="number" name="duration" placeholder="Duration (min)" required>
+            <input type="submit" value="Add Quiz">
+        </form>
+
+        <br>
+        <a href="{{ url_for('admin_home') }}">Back to Admin Home</a>
+    </div>
+</body>
+</html>
